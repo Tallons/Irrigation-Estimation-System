@@ -1,38 +1,322 @@
 .App {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 1250px;
+}
+
+.nav-container, .bid-container, .bid-container .bid-header-container, .dashboard div, .data-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-container div, .nav-container div .menu-one-container, .nav-container .menu-two-container, .bid-container .bid-name-container, .bid-container .column-names-container, .bid-container .bid-material-total-container, .bid-container .bid-product-container, .bid-container .bid-product-container .product-line, .dashboard header, .dashboard .bid-list-title, .dashboard div .bid-list-container, .dashboard div .expand-view .description-container, .data-container header, .data-container header .data-column-title-container, .data-container .data-edit-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-container {
+  width: 100%;
+  background-color: indianred;
+}
+
+.nav-container div {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: powderblue;
+  height: 75px;
+  width: 100%;
+}
+
+.nav-container div .logo {
+  height: 80%;
+  width: 30%;
+}
+
+.nav-container div .menu-one-container {
+  width: 45%;
+}
+
+.nav-container div .menu-one-container .menu-one {
+  height: 80%;
+}
+
+.nav-container .menu-two-container {
+  height: 30px;
+  width: 100%;
+  background-color: lightseagreen;
+}
+
+.bid-container {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  background-color: lightblue;
+}
+
+.bid-container .bid-name-container {
+  background-color: lightseagreen;
+  margin: 15px 0 15px 0;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  height: 40px;
+  width: 80%;
+}
+
+.bid-container .bid-header-container {
+  background-color: lightblue;
+  width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bid-container .column-one {
+  width: 40px;
+  background-color: paleturquoise;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bid-container .column-two {
+  width: 100px;
+  background-color: paleturquoise;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.bid-container .column-three {
+  width: 150px;
+  background-color: paleturquoise;
+}
+
+.bid-container .column-four {
+  width: 300px;
+  background-color: paleturquoise;
+}
+
+.bid-container .column-five {
+  width: 150px;
+  background-color: paleturquoise;
+}
+
+.bid-container .column-six {
+  width: 100px;
+  background-color: paleturquoise;
+}
+
+.bid-container .column-seven {
+  width: 100px;
+  background-color: paleturquoise;
+}
+
+.bid-container .delete-button {
+  margin: 0 0 5px 20px;
+}
+
+.bid-container .bid-total {
+  width: 15%;
+  background-color: lightgreen;
+}
+
+.bid-container .column-names-container {
+  margin-bottom: 5px;
+  background-color: indianred;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  height: 40px;
+  width: 90%;
+}
+
+.bid-container .bid-material-total-container {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: cornflowerblue;
+  width: 100%;
+  height: 30px;
+}
+
+.bid-container .bid-product-container {
+  width: 100%;
+  height: 50px;
+  background-color: indianred;
+}
+
+.bid-container .bid-product-container .delete-selector {
+  height: 30px;
+  width: 30px;
+  margin-bottom: 12px;
+}
+
+.bid-container .bid-product-container .new-line-button {
+  height: 30px;
+  width: 30px;
+}
+
+.bid-container .bid-product-container .product-line {
+  width: 90%;
+  height: 40px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-bottom: 10px;
+  background-color: lightgoldenrodyellow;
+}
+
+.dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
+.dashboard header {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-left: 35px;
+  height: 75px;
+  width: 90%;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dashboard header h1 {
+  border-bottom: 2px solid black;
 }
+
+.dashboard header button {
+  margin-top: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 30px;
+  width: 100px;
+}
+
+.dashboard .bid-list-title {
+  margin-bottom: 15px;
+  background-color: indianred;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 80%;
+}
+
+.dashboard .bid-list-title .bid-list-item-title {
+  margin: 5px;
+  text-align: center;
+  background-color: lightblue;
+  height: 30px;
+  width: 220px;
+  border: 2px solid black;
+}
+
+.dashboard div {
+  background-color: lightblue;
+}
+
+.dashboard div .bid-list-container {
+  margin: 5px;
+  background-color: indianred;
+  width: 90%;
+  height: 40px;
+}
+
+.dashboard div .bid-list-container .bid-list-item {
+  background-color: lightgoldenrodyellow;
+  text-align: center;
+  width: 270px;
+}
+
+.dashboard div .expand-view {
+  width: 90%;
+  background-color: lightslategray;
+}
+
+.dashboard div .expand-view .description-container {
+  width: 100%;
+  background-color: lightseagreen;
+}
+
+.dashboard div .expand-view .description-container .button-container button {
+  width: 80px;
+  margin: 5px;
+}
+
+.dashboard div .expand-view .description-container .overview {
+  width: 80%;
+  background-color: indianred;
+}
+
+.data-container {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 300px;
+  width: 100%;
+  background-color: lightgray;
+}
+
+.data-container header {
+  margin-top: 10px;
+  height: 50px;
+  width: 90%;
+  background-color: indianred;
+}
+
+.data-container header .data-column-title-container {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 50px;
+  width: 90%;
+}
+
+.data-container .data-edit-container {
+  height: 70px;
+  width: 90%;
+  background-color: lightblue;
+}
+
+.data-container .data-column-one {
+  width: 175px;
+  background-color: lightgoldenrodyellow;
+}
+
+.data-container .data-column-two {
+  width: 225px;
+  background-color: lightgoldenrodyellow;
+}
+
+.data-container .data-column-three {
+  width: 350px;
+  background-color: lightgoldenrodyellow;
+}
+
+.data-container .data-column-four {
+  width: 150px;
+  background-color: lightgoldenrodyellow;
+}
+/*# sourceMappingURL=App.css.map */
