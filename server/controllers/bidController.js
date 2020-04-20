@@ -9,6 +9,16 @@ module.exports = {
          }).catch(err => res.status(500).send(err))
    },
 
+   getBidInfo: (req, res) => {
+      const {id} = req.params,
+               db = req.app.get("db")
+               console.log("getBidInfo id: ", id)
+         db.bid.get_bid_info(id).then(info => {
+            console.log(info)
+            res.status(200).send(info)
+         }).catch(err => res.status(500).send(err))
+   },
+
    createBid: (req, res) => {
       const {user_id} = req.body
                   db = req.app.get("db")
@@ -34,18 +44,18 @@ module.exports = {
          }).catch(err => res.status(500).send(err))
    },
 
-   getBidProducts: (req, res) => {
+   getBidMaterials: (req, res) => {
       const {id} = req.params,
             db = req.app.get("db")
-         db.bid.get_bid_products(id).then(() => {
-            res.sendStatus(201)
+         db.bid.get_bid_materials(id).then(materials => {
+            res.status(200).send(materials)
          }).catch(err => res.status(500).send(err))
    },
 
-   addBidProduct: (req, res) => {
-      const {id} = req.params,
+   addLineItem: (req, res) => {
+      const {bid_id} = req.body,
             db = req.app.get("db")
-         db.bid.add_bid_product(materialId, id).then(() => {
+         db.bid.add_line_item(bid_id).then(() => {
             res.sendStatus(201)
          }).catch(err => res.status(500).send(err))
    },
@@ -58,11 +68,12 @@ module.exports = {
          }).catch(err => res.status(500).send(err))
    },
 
-   deleteBidProduct: (req, res) => {
-      const {id} = req.params,
-            db = req.app.get("db")
-         db.bid.delete_bid_product(id).then(() => {
-            res.sendStatus(201)
+   deleteLineItem: (req, res) => {
+      const {line} = req.params,
+            db = req.app.get("db");
+            console.log("hit", line)
+         db.bid.delete_line_item(line).then((LineItems) => {
+            res.status(200).send(LineItems)
          }).catch(err => res.status(500).send(err))
    }
 

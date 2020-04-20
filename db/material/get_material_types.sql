@@ -1,1 +1,1 @@
-SELECT material_type FROM material_types;
+SELECT DISTINCT material_type FROM materials;

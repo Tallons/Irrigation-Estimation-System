@@ -36,16 +36,21 @@ require("dotenv").config();
    app.get("/api/auth/user", authCtrl.getCurrentUser);
 
    // Bid Endpoints
-   // app.get("/api/bid/:id", bidCtrl.getCurrentBid)
+   // app.get("/api/bid/:id", bidCtrl.getCurrentBid);
+   app.get("/api/bid/:id/info", bidCtrl.getBidInfo);
    app.get("/api/bids/:id", bidCtrl.getBids) 
    app.post("/api/bid", bidCtrl.createBid)
    // app.put("/api/bid/:id", bidCtrl.renameBid)
    // app.delete("/api/bid/:id", bidCtrl.deleteBid)
+   app.get("/api/bid/:id/materials", bidCtrl.getBidMaterials);
+   app.post("/api/bid/material", bidCtrl.addLineItem)
+   app.delete("/api/bid/:line", bidCtrl.deleteLineItem)
 
-   // app.get("/api/bid/products", bidCtrl.getBidProducts);
-   app.get("/api/material/type", matCtrl.getMaterialTypes)
+   // Material Endpoints
+   app.get("/api/material/types", matCtrl.getMaterialTypes)
+   app.get("/api/material/:type", matCtrl.getMaterialNames)
+   // app.get("/api/material/:id", matCtrl.getMaterialInfo)
    // app.get("/api/material/:id/:type", matCtrl.getMaterialInfo)
-   // app.get("/api/material/:id", materialCtrl.getOneMaterial)
    // app.post("/api/bid/product", bidCtrl.addBidProduct);
    // app.put("/api/bid/product/:id", bidCtrl.updateBidProduct);
    // app.delete("/api/bid/product/:id", bidCtrl.deleteBidProduct);
