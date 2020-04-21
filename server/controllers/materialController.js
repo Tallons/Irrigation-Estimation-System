@@ -21,7 +21,7 @@ module.exports = {
       const {id} = req.params,
                  bd = req.app.get("db");
                  console.log(id)
-            bd.material.get_material_info(id).then(info => {
+            bd.material.get_material_info(+id).then(info => {
                console.log( "info ", info)
                res.status(200).send( info )
             }).catch(err => res.status(500).send(err))

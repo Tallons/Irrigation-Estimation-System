@@ -6,7 +6,8 @@ require("dotenv").config();
          {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
          authCtrl = require("./controllers/authController"),
          bidCtrl = require("./controllers/bidController"),
-         matCtrl = require("./controllers/materialController");
+         matCtrl = require("./controllers/materialController"),
+         taskCtrl = require("./controllers/taskController");
 
          port = SERVER_PORT,
          app = express();
@@ -46,10 +47,17 @@ require("dotenv").config();
    app.post("/api/bid/material", bidCtrl.addLineItem)
    app.delete("/api/bid/:line", bidCtrl.deleteLineItem)
 
+
    // Material Endpoints
    app.get("/api/material/types", matCtrl.getMaterialTypes)
-   app.get("/api/material/:type", matCtrl.getMaterialNames)
-   // app.get("/api/material/:id", matCtrl.getMaterialInfo)
+   app.get("/api/materials/:type", matCtrl.getMaterialNames)
+   app.get("/api/material/:id", matCtrl.getMaterialInfo)
+
+   //task endpoints
+   app.get("/api/material/:id/tasks", taskCtrl.getTasks)
+
+
+   // used for database adjustment
    // app.get("/api/material/:id/:type", matCtrl.getMaterialInfo)
    // app.post("/api/bid/product", bidCtrl.addBidProduct);
    // app.put("/api/bid/product/:id", bidCtrl.updateBidProduct);

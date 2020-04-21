@@ -47,6 +47,11 @@ SELECT material_quantity, material_type, material_name, description,task_type, u
    JOIN tasks t ON t.task_id = mt.task_id
       WHERE t.task_type = 'Main Line Install';
 
+      SELECT material_type, material_name, description,task_type, unit_cost FROM materials_tasks mt
+   JOIN materials m ON m.material_id = mt.material_id
+   JOIN tasks t ON t.task_id = mt.task_id
+      WHERE mt.material_id = 1;
+
 CREATE TABLE tasks (
     task_id SERIAL PRIMARY KEY,
     task_type VARCHAR(150)

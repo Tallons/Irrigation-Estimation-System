@@ -6,15 +6,25 @@ import axios from "axios";
 const Bid = (props) => {
    const [bidInfo, setBidInfo] = useState({}),
             [materialList, setMaterialList] = useState([]),
+            [materialTypeList, setMaterialTypeList] = useState([]),
+            // [materialNameList, setMaterialNameList] = useState([]),
             [selectedLineItems, setSelectedLineItems] = useState([])
+
+
    
    useEffect(() => {
       const bid_id = 1;
       axios.get(`api/bid/${bid_id}/info`).then(res => {
          setBidInfo(res.data[0]);
       });
+   },[]) 
 
-      getBidMaterials()
+   useEffect(() => {
+      getBidMaterials();
+   },[]) 
+
+   useEffect(() => {
+      getMaterialTypes();
    },[]) 
 
    const renameBid = () => {
@@ -28,15 +38,21 @@ const Bid = (props) => {
          setMaterialList(res.data)
       })
    },
+   
+   getMaterialTypes = async () => {
+      await  axios.get("/api/material/types").then(res => {
+          console.log(res.data);
+          setMaterialTypeList(res.data)
+          console.log(materialTypeList);
+ 
+       }) 
+    },
 
    addLineItem = () => {
       const bid_id = 1;
          axios.post("/api/bid/material", {bid_id}).then(() => {
-            getBidMaterials()
+            getBidMaterials() //just return using SQL
          })
-      // axios.post("/api/bid/material").then(()=> {
-      //    console.log()
-      // })
          //take materials list 
          //splice (index, 0, insert value)
    },
@@ -67,10 +83,9 @@ const Bid = (props) => {
       getBidMaterials();
    };
 
+   console.log(materialTypeList)
    return(
       <div className="bid-container">
-      {console.log(props)}
-      {console.log(materialList)}
          <div className="bid-name-container">
             <h3>{bidInfo.bid_name}</h3> 
             <h3>{bidInfo.job_number}</h3> 
@@ -92,13 +107,20 @@ const Bid = (props) => {
          </div>
             {materialList.map((material, index) => {
                return <Material
-                     key = {index}
+                     key = {material.bid_line}
                      index = {index}
-                     bid_line = {material.bid_line}
                      material = {material}
+                     materialQuantity = {material.material_quantity}
                      materialType = {material.material_type}
+                     materialId = {material.material_id}
+                     materialName = {material.material_name}
+                     materialDescription = {material.description}
+                     materialUnitCost = {material.unit_cost}
+                     materialTaskType = {material.task_type}
+
                      addLineItem = {addLineItem}
                      selectLineItem = {selectLineItem}
+                     typeList = {materialTypeList}
                />})
             }
          <div>
