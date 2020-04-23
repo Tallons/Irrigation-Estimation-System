@@ -1,292 +1,161 @@
+@import "./modules/colors";
+@import "./modules/mixins";
+
+* {
+   text-decoration: none;
+   margin: 0;
+}
 .App {
-   align-self: center;
-
-   width: 1250px;
+   @include column;
+   background-color: $palette-three;
  }
+//nav
 
- %column{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
- }
- %row{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-evenly;
-   align-items: center;
- }
- //Nav
-
- .nav-container{
-    @extend %column;
-    width: 100%;
-    background-color: indianred;
-
-    div{
-       @extend %row;
-       justify-content: space-around;
-       background-color: powderblue;
-       height: 75px;
-       width: 100%;
-       .logo{
-         height: 80%;
-         width: 30%;
-         // background-color: indianred;
-       }
-       .menu-one-container{
-         @extend %row;
-         // background-color: palegoldenrod;
-         width: 45%;
-          .menu-one{
-            height: 80%;
-            // background-color: indianred;
-          }
-       }
-    }
-    .menu-two-container {
-       @extend %row;
-       height:30px;
-       width:100%;
-       background-color: lightseagreen;
-      .menu-two{
-
-      }
-    }
- }
-// Bid
-
- .bid-container {
-    @extend %column;
-    align-items: flex-start;
-    width: 100%;
-    background-color: lightblue;
-
-      .bid-name-container{
-         @extend %row;
-         background-color: lightseagreen;
-         margin: 15px 0 15px 0;
-         align-self: center;
-         height: 40px;
-         width: 80%;
-      }
-      .bid-header-container{
-         @extend %column;
-         background-color: lightblue;
-         width: 100%;
-         text-align: center;
-         // margin-right: 15px;
-      }
-         .column-one{
-            width: 40px;
-            background-color: paleturquoise;
-         }
-         .column-two{
-            width: 100px;
-            background-color: paleturquoise;
-         }
-         .column-three{
-            width: 150px;
-            background-color: paleturquoise;
-         }
-         .column-four{
-            width: 300px;
-            background-color: paleturquoise;
-         }
-         .column-five{
-            width: 150px;
-            background-color: paleturquoise;
-         }
-         .column-six{
-            width: 100px;
-            background-color: paleturquoise;
-         }
-         .column-seven{
-            width: 100px;
-            background-color: paleturquoise;
-         }
-         .delete-button{
-
-            margin: 0 0 5px 20px;
-         }
-         .bid-total{
-            width:15%;
-            background-color: lightgreen;
-         }
-    .column-names-container{
-       margin-bottom: 5px;
-       @extend %row;
-       background-color: indianred;
-       align-self: center;
-       height:40px;
-       width: 90%;
-    }
-    .bid-material-total-container{
-       @extend %row;
-       justify-content: space-between;
-       background-color: cornflowerblue;
-       width: 100%;
-       height: 30px;
-    }
-   .bid-product-container{
-      @extend %row;
-      width: 100%;
-      height: 50px;
-      background-color: indianred;
-
-   .delete-selector{
-      height: 30px;
-      width: 30px;
-      margin-bottom: 12px;
-   }
-   .new-line-button{
-      height: 30px;
-      width: 30px;
-      ;
-   }
+.nav-container {
+   // @extend %column;
+   // margin-top:15px;
+   width: 80%;
+   background-color: indianred;
    
-    .product-line{
-      @extend %row;
-       width: 90%;
-       height: 40px;
-       align-self: center;
-       margin-bottom: 10px;
-       background-color: lightgoldenrodyellow;
-    }
-   }
-    
 
- }
-
- // Dashboard
-
- .dashboard {
-    display: flex;
-    flex-direction: column;
- 
-   header{
-      @extend %row;
-      justify-content:  space-between;
-      margin-left: 35px;
-      height: 75px;
-      width:90%;
-      text-align: center;
-         h1{
-            border-bottom: 2px solid black;
-         }
-         button{
-           margin-top:10px;
-            box-sizing: border-box;
-            height: 30px;
-            width: 100px;
-         }
-   }
-
-    .bid-list-title{
-      //  margin-top: 15px;
-       margin-bottom: 15px;
-      @extend %row;
-      background-color: indianred;
-      align-self: center;
-      width: 80%;
+   div{
+      @include row;
+      background-color: black;
+      height:75px;
       
+      .logo{
+      width: 30%;
+      }
 
-         .bid-list-item-title{
-            margin: 5px;
-            text-align: center;
-            background-color: lightblue;
-            height: 30px;
-            width:220px;
-            border: 2px solid black;
+      .menu-one-container{
+      @include row;
+      width: 45%;
+
+         .menu-one{
+         height: 80%;
+         color: $palette-one;
          }
-    }
-   div {
-      @extend %column; 
-      background-color: lightblue;
-         .bid-list-container {
-            @extend %row;
-            margin: 5px;
-            background-color: indianred;
-            width: 90%;
-            height: 40px;
-
-            .bid-list-item{
-               background-color: lightgoldenrodyellow;
-               text-align: center;
-               width: 270px;
-            }
+         .menu-one:hover{
+            color: $palette-two;
          }
-         .expand-view{
-            width: 90%;
-            background-color: lightslategray;
-         .description-container{
-            @extend %row;
-            width: 100%;
-            background-color: lightseagreen;
-            .button-container{
-               button{
-                  width: 80px;
-                  margin: 5px;
-               }
-            }
-            .overview{
-               width: 80%;
-               background-color: indianred;
-            }
+   }
+}
+.menu-two-container {
+   @include row;
+   height:30px;
+   width:100%;
+   background-color: $palette-five;
 
-         }
+  .menu-two{
+   // background-color: indianred;
+   color: black;
+  }
+  .menu-two:hover{
+   color: $palette-one;
+}
+}
+}
+//dashboard
 
+.dashboard {
+   @include column;
+   justify-content: start;
+   width: 80%;
+   min-height: 100vh;
+   background-color: $palette-two;
+   
+   header{
+      @include row;
+      justify-content:  space-between;
+      height: 80px;
+      width: 90%;
+      margin-top: 5px;
+      // background-color: $palette-seven;
+      h1{
+         border-bottom: 2px solid $palette-one;
+         color: $palette-one;
+      }
+      button{
+         height: 40px;
+         width: 120px;
+         font-size: large;
+         @include button;
+      }
+      button:hover{
+         @include button-hover;
       }
    }
 }
-// DATA
+.bid-list-title{
+   //  margin-top: 15px;
+    margin-bottom: 15px;
+   @include row;
+   // background-color: $palette-six;
+   // align-self: center;
+   width: 100%;
+   
 
-   .data-container {
-      @extend %column;
-      justify-content: flex-start;
-      height: 300px;
-      width: 100%;
-      background-color: lightgray;
-      .data-title {
-         
+      .bid-list-item-title{
+         margin: 5px;
+         text-align: center;
+         background-color: $palette-five;
+         height: 30px;
+         width:220px;
+         border: 2px solid black;
+         color: black;
       }
-      header {
-         @extend %row;
-         margin-top: 10px;
-         height: 50px;
-         width: 90%;
-         background-color: indianred;
-
-         .data-column-title-container {
-            @extend %row;
-            justify-content: space-between;
-            height: 50px;
-            width: 90%;
+ }
+   .bid-list {
+   @include column; 
+   // background-color: lightblue;
+   width: 100%;
+      .bid-list-container {
+         @include row;
+         margin: 2px;
+         background-color: $palette-four;
+         border-radius: 5px;
+         width: 95%;
+         height: 45px;
+         color: $palette-one;
+      }
+         .bid-list-container:hover{
+            background-color: $palette-six;
+            color: $palette-three;
          }
-        
-      }
-      .data-edit-container {
-         @extend %row;
-         height: 70px;
-         width: 90%;
-         background-color: lightblue;
-      }
-      .data-column-one {
-         width: 175px;
-         background-color: lightgoldenrodyellow;
-      }
-      .data-column-two {
-         width: 225px;
-         background-color: lightgoldenrodyellow;
-      }
-      .data-column-three {
-         width: 350px;
-         background-color: lightgoldenrodyellow;
-      }
-      .data-column-four {
-         width: 150px;
-         background-color: lightgoldenrodyellow;
-      }
 
+         .bid-list-item{
+            @include row;
+            // background-color: $palette-three;
+            text-align: center;
+            width: 24%;
+            height: 70%;
+         }
+}
+      .expand-view{
+         width: 95%;
+         // background-color: lightslategray;
+         .description-container{
+            @include row;
+            margin: 10px 0 10px;
+         .button-container{
+            @include column;
+            button{
+               @include button;
+               margin:  10px 25px 10px 0;
+               height: 35px;
+               width: 100px;
+            }
+            button:hover{
+               @include button-hover;
+            }
+         }
+         .overview{
+            width: 85%;
+            background-color: $palette-six;
+            border-radius: 5px;
+         }
+
+      }
 
    }
+

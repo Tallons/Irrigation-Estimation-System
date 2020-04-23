@@ -2,7 +2,7 @@ module.exports = {
    getBids: (req, res) => {
       const {id} = req.params,
                db = req.app.get("db")
-               console.log("getBid id: ", id)
+               // console.log("getBid id: ", id)
          db.bid.get_user_bids(+id).then(bids => {
             console.log(bids)
             res.status(200).send(bids)
@@ -12,7 +12,7 @@ module.exports = {
    getBidInfo: (req, res) => {
       const {id} = req.params,
                db = req.app.get("db")
-               console.log("getBidInfo id: ", id)
+               // console.log("getBidInfo id: ", id)
          db.bid.get_bid_info(id).then(info => {
             console.log(info)
             res.status(200).send(info)
@@ -30,6 +30,7 @@ module.exports = {
    deleteBid: (req, res) => {
       const {id} = req.params,
             db = req.app.get("db")
+            console.log(id)
          db.bid.delete_bid(id).then(() => {
             res.sendStatus(201)
          }).catch(err => res.status(500).send(err))
@@ -60,22 +61,39 @@ module.exports = {
          }).catch(err => res.status(500).send(err))
    },
 
-   updateBidProduct: (req, res) => {
-      const {id} = req.params,
-            db = req.app.get("db")
-         db.bid.update_bid_product(id).then(() => {
-            res.sendStatus(201)
-         }).catch(err => res.status(500).send(err))
-   },
-
+   
    deleteLineItem: (req, res) => {
       const {line} = req.params,
-            db = req.app.get("db");
-            console.log("hit", line)
-         db.bid.delete_line_item(line).then((LineItems) => {
+      db = req.app.get("db");
+      console.log("hit", line)
+      db.bid.delete_line_item(line).then((LineItems) => {
             res.status(200).send(LineItems)
          }).catch(err => res.status(500).send(err))
-   }
+      },
 
- 
+      updateMaterial: (req, res) => {
+         const { column, value, id} = req.query,
+               db = req.app.get("db")
+               console.log("req: ", req.query)
+            db.bid.update_material(column, value, +id).then(() => {
+               res.sendStatus(200)
+            }).catch(err => res.status(500).send(err))
+         },
+
+      updateQuantity: (req, res) => {
+         const {quantity} = req.body,
+               db = req.app.get("db")
+            db.bid.update_quantity(quantity).then(() => {
+               res.sendStatus(200)
+            }).catch(err => res.status(500).send(err))
+      },
+
+      updateTask: (req, res) => {
+         const {id} = req.body,
+               db = req.app.get("db")
+            db.bid.update_task(id).then(() => {
+               res.sendStatus(200)
+            }).catch(err => res.status(500).send(err))
+      },
+
 }

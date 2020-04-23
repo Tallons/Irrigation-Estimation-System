@@ -42,12 +42,13 @@ require("dotenv").config();
    app.get("/api/bids/:id", bidCtrl.getBids) 
    app.post("/api/bid", bidCtrl.createBid)
    // app.put("/api/bid/:id", bidCtrl.renameBid)
-   // app.delete("/api/bid/:id", bidCtrl.deleteBid)
+   app.delete("/api/bid/:id", bidCtrl.deleteBid)
    app.get("/api/bid/:id/materials", bidCtrl.getBidMaterials);
    app.post("/api/bid/material", bidCtrl.addLineItem)
+   app.put("/api/bid/material/", bidCtrl.updateMaterial)
    app.delete("/api/bid/:line", bidCtrl.deleteLineItem)
-
-
+   
+   
    // Material Endpoints
    app.get("/api/material/types", matCtrl.getMaterialTypes)
    app.get("/api/materials/:type", matCtrl.getMaterialNames)
@@ -55,9 +56,11 @@ require("dotenv").config();
 
    //task endpoints
    app.get("/api/material/:id/tasks", taskCtrl.getTasks)
+   app.get("/api/task/:type/production",taskCtrl.getTaskProduction)
 
 
    // used for database adjustment
+
    // app.get("/api/material/:id/:type", matCtrl.getMaterialInfo)
    // app.post("/api/bid/product", bidCtrl.addBidProduct);
    // app.put("/api/bid/product/:id", bidCtrl.updateBidProduct);

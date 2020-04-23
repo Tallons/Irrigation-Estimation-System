@@ -10,7 +10,7 @@ export default (
    <Switch>
       <Route exact path="/" component={Auth}/>
       <Route path="/dashboard" component={Dashboard}/>
-      <Route path="/bid" component={Bid}/>
+      <Route path="/bid/:id" component={Bid}/>
       <Route path="/data" component={Data}/>
       <Route path="/payroll" component={Payroll}/>
    </Switch>

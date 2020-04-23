@@ -1,14 +1,7 @@
 import axios from "axios";
 
 const initialState = {
-   user: {
-      username: ""
-   },
-   // credentials: {
-   //    username:"",
-   //    password:"",
-   //    verPassword:""
-   // }
+   user: {}
 }
 
 const REGISTER_USER = "REGISTER_USER",
@@ -40,7 +33,7 @@ export function loginUser(username, password){
    // const {username, password} = user;
    let user = axios.post("/api/auth/login", {username, password})
       .then(res => {
-         console.log(res.data);
+
          return res.data
       }).catch(err => console.log(err));
    console.log(user)
@@ -51,10 +44,11 @@ export function loginUser(username, password){
 };
 
 export function logoutUser(){
- axios.post("/api/auth/logout").then(res => {
-    res.sendStatus(200)
-   console.log(res.data);
- })
+
+ return {
+    type: LOGIN_USER,
+    payload: axios.post("/api/auth/logout")
+ }
 };
 
 export function getCurrentUser(){
@@ -85,6 +79,7 @@ export function getCurrentUser(){
 
 export default function reducer (state = initialState, action) {
    const {type, payload} = action;
+   console.log(payload)
    switch(type){
       case REGISTER_USER + "_FULFILLED": 
       return {...state, user:payload};
@@ -94,6 +89,9 @@ export default function reducer (state = initialState, action) {
 
       case GET_CURRENT_USER + "_FULFILLED": 
       return {...state, user:payload};
+
+      case LOGOUT_USER : 
+      return {user: {} };
 
     
       // case GET_USER_INFO + "_REJECTED":

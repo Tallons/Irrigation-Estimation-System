@@ -48,9 +48,9 @@ SELECT material_quantity, material_type, material_name, description,task_type, u
       WHERE t.task_type = 'Main Line Install';
 
       SELECT material_type, material_name, description,task_type, unit_cost FROM materials_tasks mt
-   JOIN materials m ON m.material_id = mt.material_id
-   JOIN tasks t ON t.task_id = mt.task_id
-      WHERE mt.material_id = 1;
+         JOIN materials m ON m.material_id = mt.material_id
+         JOIN tasks t ON t.task_id = mt.task_id
+            WHERE mt.material_id = 1;
 
 CREATE TABLE tasks (
     task_id SERIAL PRIMARY KEY,
@@ -60,6 +60,12 @@ CREATE TABLE tasks (
          VALUES (0, NULL);
    INSERT INTO tasks (task_type)
          VALUES ('Main Line Install'), ('Controller Install');
+
+         SELECT material_id, task_type, p.production_id, production_type, production_rate FROM tasks t
+            JOIN materials_tasks mt ON mt.task_id = t.task_id
+            JOIN tasks_production tp ON tp.task_id = t.task_id
+            JOIN production p ON p.production_id = tp.production_id
+               WHERE task_type = 'Main Line Install';
 
 CREATE TABLE tasks_production (
     task_id INT REFERENCES tasks(task_id),

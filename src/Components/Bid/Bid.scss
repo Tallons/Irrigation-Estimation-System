@@ -1,0 +1,152 @@
+
+@import  '../../modules/colors';
+@import  '../../modules/mixins';
+
+
+.bid-container {
+   @include column;
+   justify-content: flex-start;
+   width: 80%;
+   min-height: 100vh;
+   background-color: $palette-two;
+}
+   .bid-name-container{
+      @include row;
+      background-color: lightseagreen;
+      margin:20px 0 5px 0;
+      align-self: center;
+      height: 40px;
+      width: 80%;
+   }
+
+.bid-header-container{
+   @include column;
+   width: 100%;
+   height: 80px;
+   text-align: center;
+   // margin-right: 15px;
+.column-names-container{
+   @include row;
+   height: 40px;
+   width: 90%;
+
+      .column-one{
+         @include bid-columns;
+         width: 3%;
+      }
+      .column-two{
+         @include bid-columns;
+         width: 7%;
+      }
+      .column-three{
+         @include bid-columns;
+         width: 12%;
+      }
+      .column-four{
+         @include bid-columns;
+         width: 15%;
+      }
+      .column-five{
+         @include bid-columns;
+         width: 27%;
+      }
+      .column-six{
+         @include bid-columns;
+         width: 13%;
+      }
+      .column-seven{
+         @include bid-columns;
+         width: 8%;
+      }
+      .column-eight{
+         @include bid-columns;
+         width: 8%;
+      }
+}
+.delete-button{
+   align-self: flex-start;
+   margin: 0 0 5px 20px;
+}
+.bid-total{
+   width:15%;
+   background-color: lightgreen;
+}
+}
+
+.bid-material-total-container{
+   @include row;
+   justify-content: space-between;
+   margin: 15px 0 15px;
+   background-color: cornflowerblue;
+   width: 100%;
+   height: 30px;
+}
+.bid-product-container{
+  @include row;
+  width: 100%;
+  height: 50px;
+
+
+.delete-selector{
+  height: 30px;
+  width: 30px;
+  background-color: $palette-six;
+}
+.delete-selector:active{
+   background-color: $palette-six;
+}
+.new-line-button{
+   @include button;
+   font-size: x-large;
+   font-weight: bold;
+  height: 30px;
+  width: 30px;
+}
+.new-line-button:hover{
+   @include button-hover;
+}
+}
+.product-line {
+   @include row;
+   text-align: center;
+    width: 90%;
+    height: 40px;
+    margin: 5px 0 5px 0;
+    background-color: $palette-four;
+    color:$palette-six;
+    border-radius: 5px;
+ 
+ .line-item-column-one{
+   width: 3%;
+   height: 30px;
+}
+.line-item-column-two{
+   @include bid-inputs;
+   width: 7%;
+   height: 20px;
+}
+.line-item-column-three{
+   @include bid-inputs;
+   width: 12%;
+   
+}
+.line-item-column-four{
+   @include bid-inputs;
+   width: 15%;
+}
+.line-item-column-five{
+   width: 27%;
+}
+.line-item-column-six{
+   @include bid-inputs;
+   width: 13%;
+
+}
+.line-item-column-seven{
+   width: 8%;
+}
+.line-item-column-eight{
+   width: 8%;
+}
+}
+

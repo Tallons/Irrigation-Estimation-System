@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {logoutUser, getCurrentUser} from "../Redux/authReducer";
-
+import  logo from "../screenshot-logo.JPG";
 
 const Nav = (props) => {
 
@@ -12,26 +12,27 @@ const Nav = (props) => {
       props.getCurrentUser();
    },[])
    const handleLogout = () => {
-      
+      props.logoutUser()
+      props.history.push("/");
    }
 
+   console.log(props)
    return(
       <div className="nav-container">
-      {console.log(props)}
          <div>
-            <div className="logo"> LOGO </div>
+            <div className="logo"> <img src={logo} height="70px"/> </div>
             <nav className="menu-one-container">
                <Link to="/dashboard">
                <h3 className="menu-one">HOME</h3>
                </Link>
                <h3 className="menu-one">|</h3>
-               <h3 className="menu-one">{props.user.username}</h3>
+               <h3 className="menu-one">{props.auth.user.username}</h3>
                <h3 className="menu-one">|</h3>
                <h3 className="menu-one" onClick={()=> handleLogout()}>LOGOUT</h3>
             </nav>
          </div>
          <nav className="menu-two-container">
-               <Link to="/bid">
+               <Link to={`/bid/${props.bid.bidId}`}>
             <h3 className="menu-two">Bid</h3>
                </Link>
                <Link to="/payroll">
@@ -46,5 +47,5 @@ const Nav = (props) => {
       </div>
    )
 }
-const mapStateToProps = (reduxState) => reduxState.auth
-export default connect(mapStateToProps, {logoutUser, getCurrentUser})(Nav);
+const mapStateToProps = (reduxState) => reduxState
+export default connect(mapStateToProps, {logoutUser, getCurrentUser})(withRouter(Nav));

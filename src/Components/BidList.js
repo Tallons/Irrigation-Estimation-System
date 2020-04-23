@@ -1,11 +1,11 @@
 import React, {useState} from "react";
+import BidSummary from "./BidSummary/BidSummary"
 
-
-const DashboardDisplay = (props) => {
+const BidList = (props) => {
    const [isViewing, setViewing] = useState(false)
-   
+
    return(
-   <div>
+   <div className="bid-list">
          <div className="bid-list-container" onClick={() => {setViewing(!isViewing)}}>
                <h3 className="bid-list-item">{props.bidName}</h3>
                <h3 className="bid-list-item">{props.jobNumber}</h3>
@@ -17,11 +17,11 @@ const DashboardDisplay = (props) => {
             <div className="expand-view">
                   <div className="description-container" >
                      <div className="button-container">
-                        <button>EDIT</button>
-                        <button>DELETE</button>  
+                        <button onClick={() => props.editBid(props.bidId)}>EDIT</button>
+                        <button onClick={() => props.deleteBid(props.bidId)}> DELETE</button>  
                      </div>
                      <div className="overview">
-                        <p> BID OVERVIEW</p>
+                        <BidSummary />
                      </div>
                   </div>
             </div>
@@ -31,4 +31,4 @@ const DashboardDisplay = (props) => {
    )
 }
 
-export default DashboardDisplay
+export default BidList;
