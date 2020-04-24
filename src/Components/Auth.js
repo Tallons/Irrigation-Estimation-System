@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
-import {registerUser, loginUser} from "../Redux/authReducer"
+import {registerUser, loginUser} from "../Redux/authReducer";
+import {withRouter} from "react-router-dom";
 
 const Auth = (props) => {
    const [username, setUsername] = useState(""),
@@ -29,37 +30,43 @@ const Auth = (props) => {
          await props.loginUser(username, password);
          props.history.push("/dashboard");
    }
-
+console.log(props)
    return (
-      <div>
-         <div>
-            <h2>username</h2>
-            <input value={username} placeholder="username" onChange={(event) => setUsername(event.target.value)}/>
-            <h2>password</h2>
-            <input value={password} type="password" placeholder="password" onChange={(event) => setPassword(event.target.value)}/>
+      <div className="auth-container">
+         <div className="login-container">
+            <h1>Sign In</h1>
+            <input value={username} placeholder="Username" onChange={(event) => setUsername(event.target.value)}/>
+            <input value={password} type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)}/>
             {registerToggle 
             ? (
                <>
-                  <h2>Verify Password</h2>
                   <input value={verPassword} type="password" placeholder="Verify Password" onChange={(event) => setVerPassword(event.target.value)}/>
                </>) 
             : null
             }
          </div>
+         <div className="button-container">
             {!registerToggle 
             ? (
                <>
                   <button onClick={() => handleLogin()}>Login</button>
-                  <p>Do not have an account? <span onClick={() => setRegisterToggle(!registerToggle)}>Register</span></p>
+                  <p> 
+                  <span className="register-toggle-off" onClick={() => setRegisterToggle(!registerToggle)}>Register</span>
+                  <span className="login-toggle-on"onClick={() => setRegisterToggle(!registerToggle)}>Login</span>
+                  </p>
                </>)
             : (
                <>
                   <button onClick={() => handleRegister()}>Register</button>
-                  <p>have an account? <span onClick={() => setRegisterToggle(!registerToggle)}>Login</span></p>
+                  <p> 
+                  <span className="register-toggle-on" onClick={() => setRegisterToggle(!registerToggle)}>Register</span>
+                  <span className="login-toggle-off"onClick={() => setRegisterToggle(!registerToggle)}>Login</span>
+                  </p>
                </>)
             }
+            </div>
       </div>
    )
 }
 
-export default connect(null, {registerUser, loginUser})(Auth);
+export default connect(null, {registerUser, loginUser})(withRouter(Auth));

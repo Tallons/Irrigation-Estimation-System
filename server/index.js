@@ -38,6 +38,7 @@ require("dotenv").config();
 
    // Bid Endpoints
    // app.get("/api/bid/:id", bidCtrl.getCurrentBid);
+   app.get("/api/bid/:id/summary", bidCtrl.getBidSummary)
    app.get("/api/bid/:id/info", bidCtrl.getBidInfo);
    app.get("/api/bids/:id", bidCtrl.getBids) 
    app.post("/api/bid", bidCtrl.createBid)
@@ -58,13 +59,6 @@ require("dotenv").config();
    app.get("/api/material/:id/tasks", taskCtrl.getTasks)
    app.get("/api/task/:type/production",taskCtrl.getTaskProduction)
 
-
    // used for database adjustment
 
-   // app.get("/api/material/:id/:type", matCtrl.getMaterialInfo)
-   // app.post("/api/bid/product", bidCtrl.addBidProduct);
-   // app.put("/api/bid/product/:id", bidCtrl.updateBidProduct);
-   // app.delete("/api/bid/product/:id", bidCtrl.deleteBidProduct);
-   //app
-   // app.get("/api/product", bidCtrl.getOneProduct);
 

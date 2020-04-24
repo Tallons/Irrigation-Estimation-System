@@ -4,6 +4,7 @@
 * {
    text-decoration: none;
    margin: 0;
+
 }
 .App {
    @include column;
@@ -15,7 +16,7 @@
    // @extend %column;
    // margin-top:15px;
    width: 80%;
-   background-color: indianred;
+   box-shadow: 0 10px 25px black;
    
 
    div{
@@ -24,6 +25,7 @@
       height:75px;
       
       .logo{
+      height: 75px;
       width: 30%;
       }
 
@@ -63,6 +65,8 @@
    width: 80%;
    min-height: 100vh;
    background-color: $palette-two;
+   box-shadow: 0 10px 25px black;
+
    
    header{
       @include row;
@@ -83,6 +87,7 @@
       }
       button:hover{
          @include button-hover;
+
       }
    }
 }
@@ -93,6 +98,7 @@
    // background-color: $palette-six;
    // align-self: center;
    width: 100%;
+ ;
    
 
       .bid-list-item-title{
@@ -103,6 +109,7 @@
          width:220px;
          border: 2px solid black;
          color: black;
+         box-shadow: 0 2px 7px black;
       }
  }
    .bid-list {
@@ -111,12 +118,13 @@
    width: 100%;
       .bid-list-container {
          @include row;
-         margin: 2px;
+         margin: 5px;
          background-color: $palette-four;
          border-radius: 5px;
          width: 95%;
          height: 45px;
          color: $palette-one;
+         box-shadow: 0 5px 25px black;
       }
          .bid-list-container:hover{
             background-color: $palette-six;
@@ -148,11 +156,6 @@
             button:hover{
                @include button-hover;
             }
-         }
-         .overview{
-            width: 85%;
-            background-color: $palette-six;
-            border-radius: 5px;
          }
 
       }

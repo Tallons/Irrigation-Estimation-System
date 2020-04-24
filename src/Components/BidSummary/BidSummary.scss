@@ -1,0 +1,53 @@
+@import  "../../modules/colors";
+@import  "../../modules/mixins";
+
+.bid-summary {
+@include column;
+vertical-align: middle;
+   width: 100%;
+   height: 100%;
+
+
+   .view{
+      @include row;
+      height: 100%;
+      // background-color: lightseagreen;
+      width: 98%;
+
+      .summary-container {
+         width: 58%;
+         margin-bottom: 8px;
+
+         .row-summary{
+            @include row;
+            background-color: $palette-four;
+            color: $palette-one;
+            border-radius: 5px;
+            margin-top: 7px;
+         }
+      }
+   }
+   .chart-container {
+      width:40%;
+      // height: 100%;
+
+   }
+   .chart{
+      width: 100%;
+      background-color: $palette-six;
+      border-radius: 5px;
+   }
+   .expand-view{
+      width: 100%;
+      background-color: lightblue;
+   }
+}
+               .overview{
+               display: flex;
+               align-items: center;
+               width: 85%;
+               background-color: $palette-six;
+               min-height:150px;
+               border-radius: 5px;
+               box-shadow: 0 5px 15px black;
+            }

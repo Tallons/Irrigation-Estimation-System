@@ -16,6 +16,8 @@
    border-radius: 5px;
    color: $palette-six;
    background-color: $palette-two;
+   font-weight: bold;
+   box-shadow: 0 5px 15px black;
 }
 @mixin button-hover{
       color: $palette-two;
@@ -31,4 +33,5 @@
       border: solid 2px black;
       background-color: $palette-five;
       height: 25px;
+      box-shadow: 0 3px 10px black;
    }

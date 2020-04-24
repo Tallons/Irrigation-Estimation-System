@@ -4,16 +4,14 @@ import BidSummary from "../BidSummary/BidSummary";
 import axios from "axios";
 import {connect} from "react-redux"
 
-import "./Bid.css"
+import "./Bid.scss"
 
 const Bid = (props) => {
    const [bidInfo, setBidInfo] = useState({}),
             [bid_id, setBid_id] =  useState(props.bidId),
             [materialList, setMaterialList] = useState([]),
             [materialTypeList, setMaterialTypeList] = useState([]),
-            // [materialNameList, setMaterialNameList] = useState([]),
             [selectedLineItems, setSelectedLineItems] = useState([])
-
 
    
    useEffect(() => {
@@ -58,10 +56,6 @@ const Bid = (props) => {
          //splice (index, 0, insert value)
    },
 
-   editProductLine = () => {
-      //axios.put(`/api/bid/product/${id}`)
-   },
-
     selectLineItem = (bid_line, event) => {
       const copy = [...selectedLineItems]
          if (event.target.checked){ // add checked to array
@@ -81,7 +75,7 @@ const Bid = (props) => {
          console.log(res.data)
          })
       }
-      getBidMaterials();
+      getBidMaterials(); // return using SQL
    };
    
    
@@ -121,6 +115,7 @@ const Bid = (props) => {
                      materialDescription = {material.description}
                      materialUnitCost = {material.unit_cost}
                      materialTaskType = {material.task_type}
+                     materialTaskId = {material.task_id}
 
                      addLineItem = {addLineItem}
                      selectLineItem = {selectLineItem}
@@ -135,7 +130,9 @@ const Bid = (props) => {
          <button className="delete-button" onClick={() => deleteLineItems()}>DELETE</button>
          <h4 className="bid-total"> BID TOTAL</h4>
          </div>
-            <BidSummary />
+            <BidSummary materialList = {materialList} 
+                                    getBidMaterials = {getBidMaterials}
+                                    />
       </div>
    )
 }
