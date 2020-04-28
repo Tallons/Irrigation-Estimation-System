@@ -7,33 +7,44 @@ import {connect} from "react-redux"
 import "./Bid.scss"
 
 const Bid = (props) => {
-   const [bidInfo, setBidInfo] = useState({}),
-            [bid_id, setBid_id] =  useState(props.bidId),
+   const  [bidName, setBidName] = useState(),
+            [jobNumber, setJobNumber] = useState(),
+            [bidLocation, setBidLocation] = useState(),
+            [bid_id, setBid_id] = useState(props.bidId),
+            [isEditing, setIsEditing] = useState(false),
             [materialList, setMaterialList] = useState([]),
             [materialTypeList, setMaterialTypeList] = useState([]),
-            [selectedLineItems, setSelectedLineItems] = useState([])
+            [selectedLineItems, setSelectedLineItems] = useState([]),
+            [bidSummaryData, setBidSummaryData] = useState([])
 
    
    useEffect(() => {
       axios.get(`api/bid/${bid_id}/info`).then(res => {
-         setBidInfo(res.data[0]);
+         const {bid_name, job_number, bid_location} = res.data[0]
+         setBidName(bid_name)
+         setJobNumber(job_number)
+         setBidLocation(bid_location);
       });
    },[]) 
 
    useEffect(() => {
-      getBidMaterials();
+      getBidMaterials(); // remove  this and just use getBidSummary - create material list
    },[]) 
+   useEffect(() => {
+      getBidSummary();
+   },[bid_id])
 
    useEffect(() => {
       getMaterialTypes();
    },[]) 
 
-   const renameBid = () => {
-      //axios.put(`/api/bid/${id}`)
-      // recieve new values for  bid name, job number, bid location send to DB
+   const renameBid = async () => {
+      await axios.put(`/api/bid/${bid_id}`, {bidName, jobNumber, bidLocation})
+      // recieve new values for bid name, job number, bid location send to DB
    },
 
    getBidMaterials = () => {
+      console.log(bid_id)
       axios.get(`/api/bid/${bid_id}/materials`).then(res => {
          setMaterialList(res.data)
       })
@@ -44,14 +55,13 @@ const Bid = (props) => {
           console.log(res.data);
           setMaterialTypeList(res.data)
           console.log(materialTypeList);
- 
        }) 
     },
 
    addLineItem = () => {
          axios.post("/api/bid/material", {bid_id}).then(() => {
             getBidMaterials() //just return using SQL
-         })
+         }).catch (err => console.log(err))
          //take materials list 
          //splice (index, 0, insert value)
    },
@@ -70,24 +80,49 @@ const Bid = (props) => {
 
     deleteLineItems = async () => {
       for ( let i = 0; i < selectedLineItems.length; i++){
-         console.log(selectedLineItems)
-         await axios.delete(`/api/bid/${selectedLineItems[i]}`).then(res => {
-         console.log(res.data)
-         })
+         console.log(selectedLineItems[i])
+         await axios.delete(`/api/bid/${selectedLineItems[i]}`)
       }
       getBidMaterials(); // return using SQL
-   };
+   },
+
+   getBidSummary = () => {
+      axios.get(`/api/bid/${props.bidId}/summary`).then(res => {
+         setBidSummaryData(res.data)
+      }).catch (err => console.log(err))
+   }
    
    
-   console.log(props)
-   console.log(materialTypeList)
+   console.log(bid_id)
+   // console.log(materialList)
+   // console.log(bidSummaryData)
+   // console.log(props)
+   // console.log(materialTypeList)
    return(
       <div className="bid-container">
-         <div className="bid-name-container">
-            <h4>{bidInfo.bid_name}</h4> 
-            <h4>{bidInfo.job_number}</h4> 
-            <h4>{bidInfo.bid_location}</h4> 
-         </div>
+            {!isEditing ? (
+               <div className="bid-name-container" onClick={() => setIsEditing(!isEditing)}>
+                  <h4 onClick={() => setIsEditing(!isEditing)}>{bidName}</h4> 
+                  <h4 onClick={() => setIsEditing(!isEditing)}># {jobNumber}</h4> 
+                  <h4 onClick={() => setIsEditing(!isEditing)}>{bidLocation}</h4> 
+               </div>
+            ) : (
+               <div className="bid-name-container"
+               onDoubleClick={(event) => {
+                  setIsEditing(!isEditing)
+                  renameBid(event.target)
+                  }}>
+                  <h4 onChange = {event => setBidName(event.target.value)}>
+                     <input value={bidName} placeholder="Bid Name"/>
+                     </h4>
+                  <h4 onChange = {event => setJobNumber(event.target.value)}>
+                     <input value={jobNumber} placeholder="Job Number"/>
+                  </h4>
+                  <h4 onChange = {event => setBidLocation(event.target.value)}>
+                     <input value={bidLocation} placeholder="Location"/>
+                  </h4>
+               </div>
+            )}
          <div className="bid-header-container">
       <button className="delete-button"> DELETE</button>
            
@@ -98,7 +133,7 @@ const Bid = (props) => {
                <h4 className="column-four">Material Name</h4>
                <h4 className="column-five">Description</h4>
                <h4 className="column-six">Task Type</h4>
-               <h4 className="column-seven"> Unit Price</h4>
+               <h4 className="column-seven"> Unit Cost</h4>
                <h4 className="column-eight">Total</h4>
             </div> 
          </div>
@@ -120,6 +155,7 @@ const Bid = (props) => {
                      addLineItem = {addLineItem}
                      selectLineItem = {selectLineItem}
                      typeList = {materialTypeList}
+                     getBidSummary = {getBidSummary}
                />})
             }
          <div>
@@ -127,11 +163,11 @@ const Bid = (props) => {
             
          </div>
          <div className="bid-material-total-container">
-         <button className="delete-button" onClick={() => deleteLineItems()}>DELETE</button>
-         <h4 className="bid-total"> BID TOTAL</h4>
+         <button className="delete-button-two" onClick={() => deleteLineItems()}>DELETE</button>
          </div>
             <BidSummary materialList = {materialList} 
                                     getBidMaterials = {getBidMaterials}
+                                    bidSummaryData = {bidSummaryData}
                                     />
       </div>
    )
@@ -139,5 +175,3 @@ const Bid = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState.bid
 export default connect(mapStateToProps, null)(Bid);
-
-

@@ -8,16 +8,16 @@
 }
 .App {
    @include column;
-   background-color: $palette-three;
+   background-color: $palette-one;
+   background-image: url(https://img.wallpapersafari.com/desktop/1920/1080/93/52/7OE9Q0.jpg);
+   background-size:  100% 100%;
  }
+
 //nav
 
 .nav-container {
-   // @extend %column;
-   // margin-top:15px;
    width: 80%;
    box-shadow: 0 10px 25px black;
-   
 
    div{
       @include row;
@@ -82,14 +82,16 @@
       button{
          height: 40px;
          width: 120px;
-         font-size: large;
+         font-size: 18px;
          @include button;
       }
       button:hover{
          @include button-hover;
-
       }
    }
+         .delete-bid-button:hover{
+            background-color: #800000;
+         }
 }
 .bid-list-title{
    //  margin-top: 15px;
@@ -103,9 +105,11 @@
 
       .bid-list-item-title{
          margin: 5px;
+         padding-top: 5px;
+         box-sizing: border-box;
          text-align: center;
          background-color: $palette-five;
-         height: 30px;
+         height: 35px;
          width:220px;
          border: 2px solid black;
          color: black;
@@ -116,7 +120,7 @@
    @include column; 
    // background-color: lightblue;
    width: 100%;
-      .bid-list-container {
+      %bid-list-container {
          @include row;
          margin: 5px;
          background-color: $palette-four;
@@ -126,10 +130,23 @@
          color: $palette-one;
          box-shadow: 0 5px 25px black;
       }
+      .bid-list-container {
+         @extend %bid-list-container;
+      }
+
+      .bid-list-container-alt {
+         @extend %bid-list-container;
+         background-color: #44A635;
+      }
          .bid-list-container:hover{
             background-color: $palette-six;
             color: $palette-three;
          }
+         .bid-list-container-alt:hover{
+            background-color: rgb(180, 238, 170);
+            color: $palette-three;
+         }
+
 
          .bid-list-item{
             @include row;
@@ -161,4 +178,24 @@
       }
 
    }
+
+   @media screen and (max-width: 1100px){
+      .App {
+         background-image: url(https://img.wallpapersafari.com/desktop/1920/1080/93/52/7OE9Q0.jpg);
+         background-position: center;
+         background-size:  150% 100%;
+         height: 110vh;
+       }
+
+       .nav-container{
+          height:100px;
+          width: 90%;
+          .nav{
+             height:100%;
+          }
+       }
+       .dashboard {
+         width: 90%;
+   }
+}
 

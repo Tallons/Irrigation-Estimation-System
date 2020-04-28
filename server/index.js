@@ -33,21 +33,21 @@ require("dotenv").config();
    //Auth Endpoints
    app.post("/api/auth/register", authCtrl.register);
    app.post("/api/auth/login", authCtrl.login);
-   app.get("/api/auth/logout", authCtrl.logout);
+   app.post("/api/auth/logout", authCtrl.logout);
    app.get("/api/auth/user", authCtrl.getCurrentUser);
 
    // Bid Endpoints
    // app.get("/api/bid/:id", bidCtrl.getCurrentBid);
+   app.put("/api/bid/material", bidCtrl.updateMaterial);
    app.get("/api/bid/:id/summary", bidCtrl.getBidSummary)
    app.get("/api/bid/:id/info", bidCtrl.getBidInfo);
-   app.get("/api/bids/:id", bidCtrl.getBids) 
-   app.post("/api/bid", bidCtrl.createBid)
-   // app.put("/api/bid/:id", bidCtrl.renameBid)
-   app.delete("/api/bid/:id", bidCtrl.deleteBid)
+   app.get("/api/bids/:id", bidCtrl.getBids);
+   app.post("/api/bid", bidCtrl.createBid);
+   app.put("/api/bid/:id", bidCtrl.renameBid);
+   app.delete("/api/bids/:id", bidCtrl.deleteBid);
    app.get("/api/bid/:id/materials", bidCtrl.getBidMaterials);
-   app.post("/api/bid/material", bidCtrl.addLineItem)
-   app.put("/api/bid/material/", bidCtrl.updateMaterial)
-   app.delete("/api/bid/:line", bidCtrl.deleteLineItem)
+   app.post("/api/bid/material", bidCtrl.addLineItem);
+   app.delete("/api/bid/:line", bidCtrl.deleteLineItem);
    
    
    // Material Endpoints

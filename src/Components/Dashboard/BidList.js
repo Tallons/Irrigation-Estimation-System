@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import BidSummary from "./BidSummary/BidSummary";
+import BidSummary from "../BidSummary/BidSummary";
 import axios from "axios";
 
 const BidList = (props) => {
@@ -11,24 +11,23 @@ const BidList = (props) => {
    }, [])
 
    const getBidSummary = () => {
-      // if (!bidSummaryData || props.bidId !== dataBidId) {
+      if (!bidSummaryData || props.bidId !== dataBidId) {
          axios.get(`/api/bid/${props.bidId}/summary`).then(res => {
             console.log(res.data)
             setBidSummaryData(res.data)
             setDataBidId(res.data[0].bid_id) 
          }).catch (err => console.log(err))
-      // } else {
-      //    console.log("IDs match")
-      // }
+      } else {
+         console.log("IDs match")
+      }
    }
 
-     console.log(props.toggleView)
    return(
    <div className="bid-list">
-         <div className="bid-list-container" onClick={() => {getBidSummary() 
-            props.handleToggle(props.index)}}>
-  
-         {console.log(props.toggleView[props.index])}
+         <div className={props.index%2 === 0 ? "bid-list-container" : "bid-list-container-alt"}
+                  onClick={() => {
+                     getBidSummary() 
+                     props.handleToggle(props.index)}} >
                <h3 className="bid-list-item">{props.bidName}</h3>
                <h3 className="bid-list-item">{props.jobNumber}</h3>
                <h3 className="bid-list-item">{props.bidLocation}</h3>
@@ -42,7 +41,8 @@ const BidList = (props) => {
                         <button onClick={() => {
                               props.editBid(props.bidId)}
                               }>EDIT</button>
-                        <button onClick={() => props.deleteBid(props.bidId)}> DELETE</button>  
+                        <button className="delete-bid-button" 
+                                       onClick={() => props.deleteBid(props.bidId)}> DELETE</button>  
                      </div>
                      <div className="overview">
                         <BidSummary getBidSummary = {getBidSummary}

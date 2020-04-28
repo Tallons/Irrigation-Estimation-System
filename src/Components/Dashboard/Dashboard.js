@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 import BidList from "./BidList";
-import {setBidId} from "../Redux/bidReducer";
+import {setBidId} from "../../Redux/bidReducer";
 import axios from "axios";
 import {connect} from "react-redux";
 
 const Dashboard = (props) => {
-   const [bidList, setBidList] = useState([{ bid_id: 21, bid_name: "Test 1", job_number: 4252, bid_location: "Phoenix", price:"$12,425"}, {bid_id: 23, bid_name: "Test 2", job_number: 2432, bid_location: "Phoenix", price:"$17,255"}]),
+   const [bidList, setBidList] = useState([]),
+      // [{ bid_id: 21, bid_name: "Test 1", job_number: 4252, bid_location: "Phoenix", price:"$12,425"}, {bid_id: 23, bid_name: "Test 2", job_number: 2432, bid_location: "Phoenix", price:"$17,255"}]),
    // const [isViewing, setViewing] = useState(false),
          [toggleView, setToggleView] = useState ([])
 
@@ -17,15 +18,17 @@ const Dashboard = (props) => {
 
    const createBid = () => {
       const {user_id} = props.auth.user;
-      axios.post("/api/bid/", {user_id}).then(res => {
-         console.log(res.data);
-         console.log(" Bid Created");
-         // props.history.push(`/bid/:${id}` );
+      axios.post("/api/bid", {user_id}).then(res => {
+         const {bid_id} = res.data
+         console.log(res.data)
+         props.setBidId(bid_id)
+         props.history.push(`/bid/:${bid_id}` );
       }).catch(err => console.log(err));
    },
 
    deleteBid = (id) => {
-      axios.delete(`/api/bid/${id}`).then(() => {
+      console.log(id)
+      axios.delete(`/api/bids/${id}`).then(() => {
          console.log(" Bid deleted");
          getUserBids();
       }).catch(err => console.log(err));
@@ -50,29 +53,27 @@ const Dashboard = (props) => {
       for (let i = 0; i < bidList.length; i++) {
          arr.push(false)
       } 
-      console.log(arr)
+      // console.log(arr)
       return arr
    },
    handleToggle = async (index) => {
       let arr =  await toggleSetup()
-      console.log(index)
+      // console.log(index)
       // let arr = toggleView
       arr[index] = ! toggleView[index]
-      console.log(arr)
-      console.log(toggleView[index])
+      // console.log(arr)
+      // console.log(toggleView[index])
       setToggleView(arr);
    }
       
    
    console.log(props)
-    console.log(bidList.bid_name)
+    console.log(bidList)
    return(
       <div className="dashboard">
           <header>
              <h1>Your Bids</h1>
-             <button 
-            //  onClick={() => createBid()}
-            >Create
+             <button onClick={() => createBid()}>CREATE
              </button>
           </header>
           <div className="bid-list-title">

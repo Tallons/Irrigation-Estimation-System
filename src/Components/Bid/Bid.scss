@@ -13,19 +13,27 @@
 }
    .bid-name-container{
       @include row;
-      background-color: lightseagreen;
-      margin:20px 0 5px 0;
+      background-color: #44A635;
+      color: $palette-one;
+      font-size: 20px ;
+      margin:20px 0 10px 0;
       align-self: center;
       height: 40px;
       width: 80%;
       box-shadow: 0 5px 20px black;
+      border-radius: 10px;
+   }
+   .bid-name-container:hover{
+      background-color: rgb(180, 238, 170);
+      color: $palette-three;
    }
 
 .bid-header-container{
    @include column;
    width: 100%;
-   height: 80px;
+   height: 40px;
    text-align: center;
+   margin: 10px 0 15px;
    // margin-right: 15px;
 .column-names-container{
    @include row;
@@ -65,21 +73,28 @@
          width: 8%;
       }
 }
-.delete-button{
-   align-self: flex-start;
-   margin: 0 0 5px 20px;
 }
+.delete-button{
+   @include button;
+   align-self: flex-start;
+   margin: 0 0 10px 20px;
+   padding: 3px 6px 3px 6px;
+   font-size: 16px;
+}
+   .delete-button:hover{
+      @include button-hover;
+   }
 .bid-total{
    width:15%;
    background-color: lightgreen;
 }
-}
+
 
 .bid-material-total-container{
    @include row;
    justify-content: space-between;
-   margin: 15px 0 15px;
-   background-color: cornflowerblue;
+   margin: 5px 0  5px 40px;
+   // margin: 15px 0 15px;
    width: 100%;
    height: 30px;
 }
@@ -87,10 +102,12 @@
   @include row;
   width: 100%;
   height: 50px;
+}
 
 .delete-selector{
   height: 30px;
   width: 30px;
+  color: $palette-four;
   background-color: $palette-six;
 }
 .delete-selector:active{
@@ -98,15 +115,30 @@
 }
 .new-line-button{
    @include button;
-   font-size: x-large;
+   font-size: 20px;
    font-weight: bold;
   height: 30px;
   width: 30px;
+//   box-sizing: border-box;
+//   margin-top: -2px;
 }
 .new-line-button:hover{
    @include button-hover;
 }
-}
+
+
+.product-line-alt{
+   @include row;
+   text-align: center;
+    width: 90%;
+    height: 40px;
+    margin: 5px 0 5px 0;
+    background-color: #44A635;
+    color:$palette-one;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px black;
+  }
+
 .product-line {
    @include row;
    text-align: center;
@@ -117,7 +149,7 @@
     color:$palette-six;
     border-radius: 5px;
     box-shadow: 0 5px 15px black;
- 
+}
  .line-item-column-one{
    width: 3%;
    height: 30px;
@@ -150,5 +182,17 @@
 .line-item-column-eight{
    width: 8%;
 }
+.delete-button-two{
+   @include button;
+   align-self: flex-start;
+   margin: 10px 0 0 4px;
+   padding: 3px 6px 3px 6px;
+   font-size: 16px;
+}
+.delete-button-two:hover{
+   @include button-hover;
 }
 
+@media (max-width: 1250px){
+
+}

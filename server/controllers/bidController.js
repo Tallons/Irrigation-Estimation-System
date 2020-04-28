@@ -8,11 +8,13 @@ module.exports = {
       }).catch(err => res.status(500).send(err))
    },
    
-   createBid: (req, res) => {
+   createBid: async (req, res) => {
       const {user_id} = req.body
       db = req.app.get("db")
-      db.bid.create_bid(user_id).then(bid => {
-         res.status(201).send(bid)
+      let newBid = await db.bid.create_bid(user_id)
+      // console.log(newBid[0].bid_id)
+       await db.bid.add_line_item(newBid[0].bid_id).then(() => {
+         res.status(201).send(newBid[0])
       }).catch(err => res.status(500).send(err))
    },
    
@@ -38,7 +40,7 @@ module.exports = {
          const {id} = req.params,
          db = req.app.get("db")
          db.bid.get_bid_materials(id).then(materials => {
-            console.log("materials: ", materials)
+            // console.log("materials: ", materials)
             res.status(200).send(materials)
          }).catch(err => res.status(500).send(err))
       },
@@ -46,9 +48,7 @@ module.exports = {
       getBids: (req, res) => {
          const {id} = req.params,
                   db = req.app.get("db")
-                  // console.log("getBid id: ", id)
             db.bid.get_user_bids(+id).then(bids => {
-               console.log(bids)
                res.status(200).send(bids)
             }).catch(err => res.status(500).send(err))
       },
@@ -57,7 +57,7 @@ module.exports = {
          const {id} = req.params,
                     db = req.app.get("db")
          db.bid.get_bid_summary(id).then(bidInfo => {
-            console.log(bidInfo)
+            // console.log(bidInfo)
             res.status(200).send(bidInfo)
          }).catch (err => res.status(500).send(err))
       },
@@ -67,27 +67,27 @@ module.exports = {
                   db = req.app.get("db")
                   // console.log("getBidInfo id: ", id)
             db.bid.get_bid_info(id).then(info => {
-               console.log(info)
+               // console.log(info)
                res.status(200).send(info)
             }).catch(err => res.status(500).send(err))
       },
 
       renameBid: (req, res) => {
          const {id} = req.params,
+                   {bidName, jobNumber, bidLocation} = req.body,
                db = req.app.get("db")
-            db.bid.rename_bid(bidName, jobNumber, bidLocation).then(() => {
+            db.bid.rename_bid(bidName, jobNumber, bidLocation, id).then(() => {
                res.sendStatus(201)
             }).catch(err => res.status(500).send(err))
       },
 
       updateMaterial: (req, res) => {
+         console.log("req: ", req.query)
          const { column, value, id} = req.query,
                db = req.app.get("db")
-               console.log("req: ", req.query)
-            db.bid.update_material(column, value, +id).then(() => {
+             db.bid.update_material(column, value, id).then(() => {
                res.sendStatus(200)
-            }).catch(err => res.status(500).send(err))
+            }).catch(err => res.status(400).send(err))
          },
-
 
       }

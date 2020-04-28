@@ -11,19 +11,30 @@ vertical-align: middle;
    .view{
       @include row;
       height: 100%;
+      margin: 10px 0 10px;
       // background-color: lightseagreen;
       width: 98%;
 
       .summary-container {
-         width: 58%;
+         width: 50%;
          margin-bottom: 8px;
-
+         
          .row-summary{
             @include row;
+            justify-content: space-between;
+            padding: 0 15px 0 15px;
             background-color: $palette-four;
             color: $palette-one;
+
+            height: 30px;
             border-radius: 5px;
             margin-top: 7px;
+            .row-total{
+               @include row;
+               // background-color: indianred;
+               height:25px;
+               // width:1px;
+            }
          }
       }
    }

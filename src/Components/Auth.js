@@ -10,7 +10,14 @@ const Auth = (props) => {
          [registerToggle, setRegisterToggle] = useState(false);
 
 
-  const handleRegister = () => {
+  const clearPlaceholder = (inputId, newValue) => {
+     if (newValue){
+      document.getElementById(inputId).placeholder  = newValue
+     } else {
+        document.getElementById(inputId).placeholder  = ""
+     }
+  },
+   handleRegister = () => {
       if (!password){
          console.log("no password");
       } else {
@@ -24,23 +31,30 @@ const Auth = (props) => {
             setVerPassword("");
          }
       }
-   }
+   },
 
-   const handleLogin = async  () => {
+   handleLogin = async  () => {
          await props.loginUser(username, password);
          props.history.push("/dashboard");
    }
-console.log(props)
+   
    return (
       <div className="auth-container">
          <div className="login-container">
-            <h1>Sign In</h1>
-            <input value={username} placeholder="Username" onChange={(event) => setUsername(event.target.value)}/>
-            <input value={password} type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)}/>
+            <h1>{registerToggle? "Register" : "Sign In"}</h1>
+            <input id="login" value={username} placeholder="Username" 
+            onChange={(event) => setUsername(event.target.value)}
+            onFocus={() => clearPlaceholder("login")}
+            onBlur={() => clearPlaceholder("login", "Username")}/>
+            <input id="password" value={password} type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)}
+            onFocus={() => clearPlaceholder("password")}
+            onBlur={() => clearPlaceholder("password", "Password")}/>
             {registerToggle 
             ? (
                <>
-                  <input value={verPassword} type="password" placeholder="Verify Password" onChange={(event) => setVerPassword(event.target.value)}/>
+                  <input id="verPassword" value={verPassword} type="password" placeholder="Verify Password" onChange={(event) => setVerPassword(event.target.value)}
+                  onFocus={() => clearPlaceholder("verPassword")}
+                  onBlur={() => clearPlaceholder("verPassword", "Verify Password")}/>
                </>) 
             : null
             }
@@ -52,14 +66,14 @@ console.log(props)
                   <button onClick={() => handleLogin()}>Login</button>
                   <p> 
                   <span className="register-toggle-off" onClick={() => setRegisterToggle(!registerToggle)}>Register</span>
-                  <span className="login-toggle-on"onClick={() => setRegisterToggle(!registerToggle)}>Login</span>
+                  <span className="login-toggle-on">Login</span>
                   </p>
                </>)
             : (
                <>
                   <button onClick={() => handleRegister()}>Register</button>
                   <p> 
-                  <span className="register-toggle-on" onClick={() => setRegisterToggle(!registerToggle)}>Register</span>
+                  <span className="register-toggle-on">Register</span>
                   <span className="login-toggle-off"onClick={() => setRegisterToggle(!registerToggle)}>Login</span>
                   </p>
                </>)

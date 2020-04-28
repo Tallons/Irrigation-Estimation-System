@@ -1,7 +1,7 @@
 import React from "react";
 import {Switch, Route} from "react-router-dom";
 import Landing from "./Components/Landing";
-import Dashboard from "./Components/Dashboard"
+import Dashboard from "./Components/Dashboard/Dashboard"
 import Bid from "./Components/Bid/Bid"
 import Data from "./Components/Data"
 import Payroll from "./Components/Payroll"

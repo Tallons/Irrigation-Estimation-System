@@ -9,15 +9,8 @@ const REGISTER_USER = "REGISTER_USER",
             LOGOUT_USER = "LOGOUT_USER",
             GET_CURRENT_USER = "GET_CURRENT_USER";
 
-
-// export function getUser (userObj) {
-//    return {
-//       type: GET_USER,
-//       payload:userObj
-//    }
-// }
-export function registerUser(username, password){
-   let user = axios.post("/api/auth/register")
+export  const registerUser = (username, password) =>{
+   let user = axios.post("/api/auth/register", {username, password})
       .then(({data}) => {
          console.log(data);
          return data
@@ -29,7 +22,7 @@ export function registerUser(username, password){
    }
 }
 
-export function loginUser(username, password){
+export const loginUser = (username, password) => {
    // const {username, password} = user;
    let user = axios.post("/api/auth/login", {username, password})
       .then(res => {
@@ -43,7 +36,7 @@ export function loginUser(username, password){
    }
 };
 
-export function logoutUser(){
+export const logoutUser = () => {
 
  return {
     type: LOGIN_USER,
@@ -51,7 +44,7 @@ export function logoutUser(){
  }
 };
 
-export function getCurrentUser(){
+export const  getCurrentUser = () => {
    let user = axios.get("/api/auth/user")
       .then(res => {
          console.log(res.data);
@@ -83,9 +76,15 @@ export default function reducer (state = initialState, action) {
    switch(type){
       case REGISTER_USER + "_FULFILLED": 
       return {...state, user:payload};
+      
+      case REGISTER_USER + '_REJECTED':
+            return { ...state, error: payload }
 
       case LOGIN_USER + "_FULFILLED": 
       return {...state, user:payload};
+
+      case LOGIN_USER + '_REJECTED':
+            return { ...state, error: payload }
 
       case GET_CURRENT_USER + "_FULFILLED": 
       return {...state, user:payload};

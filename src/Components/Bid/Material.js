@@ -19,7 +19,6 @@ const Material = (props) => {
 
 
       useEffect (() => {
-         console.log("true")
       },[])
 
       
@@ -47,14 +46,16 @@ const Material = (props) => {
 
       updateMaterial = (columnName, value) => {
       const {bidLineId} = props
-      console.log("bidLineId ", bidLineId)
-      console.log("value ", value)
-      console.log("columnName ", columnName)
+               // console.log("bidLineId ", bidLineId)
+               // console.log("value ", value)
+               // console.log("columnName ", columnName)
       if (columnName === "material_quantity" && value === props.materialQuantity){
          console.log("no change in quantity")
       } else if (columnName && value >= 0 ){
-      axios.put(`/api/bid/material/?column=${columnName}&value=${value}&id=${bidLineId}`).then(res => {
-         console.log(res.data)
+         console.log("hit else If")
+      axios.put(`/api/bid/material?column=${columnName}&value=${value}&id=${bidLineId}`).then(res => {
+                   console.log(res.data)
+         props.getBidSummary();
          }).catch (err => console.log(err))
       } else {
          console.log("error")
@@ -108,9 +109,10 @@ const Material = (props) => {
          // console.log(materialNameList)
          // console.log(materialName)
    return(
-      <div className="bid-product-container">
-         <input className="delete-selector" type="checkbox"/>
-         <div className="product-line">
+      <div className="bid-product-container" >
+         <input className="delete-selector" type="checkbox"
+                     onClick={(event) => props.selectLineItem(props.bidLineId, event)}/>
+         <div className="product-line" >
             <h3 className="line-item-column-one"> {props.index + 1} </h3>
             <input className="line-item-column-two" 
                         value={materialQuantity} 
@@ -150,7 +152,7 @@ const Material = (props) => {
             </select>
 
             <h3 className="line-item-column-seven">{`$${material.unit_cost}`}</h3>
-            <h3 className="line-item-column-eight">{`$${material.unit_cost  * materialQuantity}`}</h3>
+            <h3 className="line-item-column-eight">{`$${(material.unit_cost  * materialQuantity).toFixed(2)}`}</h3>
          </div>
          <button className="new-line-button" onClick={()=> props.addLineItem()}>+</button>
       </div>

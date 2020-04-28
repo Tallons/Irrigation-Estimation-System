@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const initialState = {
-      bidId: 1
+      bidId: {}
 };
 
 const GET_CURRENT_BID = "GET_CURRENT_BID",

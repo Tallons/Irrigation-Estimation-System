@@ -17,6 +17,8 @@
    color: $palette-six;
    background-color: $palette-two;
    font-weight: bold;
+   // font-family: Georgia, 'Times New Roman', Times, serif;
+   font-style: normal;
    box-shadow: 0 5px 15px black;
 }
 @mixin button-hover{
