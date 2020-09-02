@@ -31,9 +31,14 @@ vertical-align: middle;
             margin-top: 7px;
             .row-total{
                @include row;
-               // background-color: indianred;
+               justify-content: space-evenly;
+
                height:25px;
+               width: 12vw;
                // width:1px;
+               h3 {
+                  width: 7vw;
+               }
             }
          }
       }

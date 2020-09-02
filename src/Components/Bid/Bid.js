@@ -93,7 +93,7 @@ const Bid = (props) => {
    }
    
    
-   console.log(bid_id)
+   console.log(bid_id)   
    // console.log(materialList)
    // console.log(bidSummaryData)
    // console.log(props)

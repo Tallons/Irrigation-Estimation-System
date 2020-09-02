@@ -86,7 +86,7 @@ const BidSummary = (props) => {
                <div className= "row-total">
 
                <h3 >Total:  </h3>
-               <h3>{props.bidSummaryData ? `$ ${matCost}` : 0}</h3>
+               <h3>{props.bidSummaryData ? `  $${matCost}` : 0}</h3>
                </div>
                </div>
                {isViewing
@@ -102,11 +102,11 @@ const BidSummary = (props) => {
             ) : null
             }  
                <div className="row-summary">
-               <h3>Labor hours:</h3>
-               <h3>{props.bidSummaryData ? laborHours.toFixed(2): 0}</h3>
+               <h3>Labor hours: 
+               {props.bidSummaryData ? `  ${laborHours.toFixed(2)}`: 0}</h3>
                <div className="row-total">
-               <h3>Total:</h3>
-               <h3>{`$ ${(laborCost).toFixed(2)}`}</h3>
+               <h3>Total: </h3>
+               <h3>{`  $${(laborCost).toFixed(2)}`}</h3>
                </div>
                </div>
                {isViewing
@@ -119,21 +119,22 @@ const BidSummary = (props) => {
                <div className="row-summary">
                <h3>Equipment</h3>
                <div className="row-total">
-               <h3>Total:</h3>
-               <h3>$ 0</h3>
+               <h3>Total: </h3>
+               <h3>$0</h3>
                </div>
                </div>
                <div className="row-summary">
                <h3>Overhead</h3>
                <div className="row-total">
-               <h3>Total:</h3>
-               <h3>{`$ ${(overheadCost).toFixed(2)}`}</h3>
+               <h3>Total: </h3>
+               <h3>{`  $${(overheadCost).toFixed(2)}`}</h3>
                </div>
                </div>
                <div className="row-summary">
+               <h3></h3>
                <div className="row-total">
-               <h3>Total:</h3>
-               <h3>{`$ ${bidTotal()}`}</h3>
+               <h3>Total:  </h3>
+               <h3>{`  $${bidTotal()}`}</h3>
                </div>
                </div>
             </div>

@@ -6,8 +6,6 @@ import {connect} from "react-redux";
 
 const Dashboard = (props) => {
    const [bidList, setBidList] = useState([]),
-      // [{ bid_id: 21, bid_name: "Test 1", job_number: 4252, bid_location: "Phoenix", price:"$12,425"}, {bid_id: 23, bid_name: "Test 2", job_number: 2432, bid_location: "Phoenix", price:"$17,255"}]),
-   // const [isViewing, setViewing] = useState(false),
          [toggleView, setToggleView] = useState ([])
 
    useEffect (() => {
@@ -53,22 +51,15 @@ const Dashboard = (props) => {
       for (let i = 0; i < bidList.length; i++) {
          arr.push(false)
       } 
-      // console.log(arr)
       return arr
    },
    handleToggle = async (index) => {
       let arr =  await toggleSetup()
-      // console.log(index)
-      // let arr = toggleView
       arr[index] = ! toggleView[index]
-      // console.log(arr)
-      // console.log(toggleView[index])
       setToggleView(arr);
    }
       
-   
-   console.log(props)
-    console.log(bidList)
+
    return(
       <div className="dashboard">
           <header>
@@ -92,7 +83,6 @@ const Dashboard = (props) => {
                                     jobNumber = {bid.job_number}
                                     bidLocation = {bid.bid_location}
                                     bidPrice = {bid.price}
-                                    // userId = {props.auth.user.user_id}
 
                                     toggleView = {toggleView}
                                     handleToggle = {handleToggle}
@@ -106,3 +96,4 @@ const Dashboard = (props) => {
 }
 const mapStateToProps = (reduxState) => reduxState
 export default connect(mapStateToProps, {setBidId})(Dashboard);
+   

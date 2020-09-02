@@ -80,10 +80,10 @@
          color: $palette-one;
       }
       button{
+         @include button;
          height: 40px;
          width: 120px;
          font-size: 18px;
-         @include button;
       }
       button:hover{
          @include button-hover;
@@ -166,9 +166,9 @@
             @include column;
             button{
                @include button;
-               margin:  10px 25px 10px 0;
-               height: 35px;
-               width: 100px;
+               margin:  15px 25px 15px 0;
+               height: 40px;
+               width: 120px;
             }
             button:hover{
                @include button-hover;

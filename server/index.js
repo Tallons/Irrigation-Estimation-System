@@ -14,6 +14,7 @@ require("dotenv").config();
 
    app.use(cors());
    app.use(express.json());
+   app.use(express.static("build/index.js"))
    app.use(session({
       resave: false,
       saveUninitialized: true,
